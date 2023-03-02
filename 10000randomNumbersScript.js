@@ -34,6 +34,7 @@ function copyNumbers(){
         copiedNumbers += `${randomNumbers[i]}\n`
     }
     navigator.clipboard.writeText(copiedNumbers)
+   
 }
 form.addEventListener('submit', e =>{
     e.preventDefault()
