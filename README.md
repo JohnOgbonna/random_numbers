@@ -5,5 +5,5 @@
 -Step 3 
     Select 'Generate' and the numbers will appear in a scrollable list beneath the generate button. There will be no duplicate numbers, as requested
 -Step 4
-    Hit the clear button and try again as desired!
+    Hit the clear button and try again as desired! Or hit copy to copy the numbers
 
