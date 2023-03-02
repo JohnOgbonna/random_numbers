@@ -1,13 +1,11 @@
 let form = document.getElementById('form');
-
+let randomNumbers = []
 function generateRandomNumbers(min, max, digits, decimals){
-    let randomNumbers = []
     let index = 0
     while (randomNumbers.length < digits) {
         let number = +(Math.random() * (max-min) + min).toFixed(decimals) //set range of numbers based on max and min
         if (!randomNumbers.includes(number)) { //only add number if not inside random numbers array to avoid duplication
             randomNumbers.push(number)
-            console.log(randomNumbers[index]) //prints out the numbers in the console
             index++ //index tracks numbers added to random numbers
         }
     }
@@ -19,8 +17,24 @@ function generateRandomNumbers(min, max, digits, decimals){
     let confirmation = document.getElementById('confirmation')
     confirmation.innerHTML = ''
     confirmation.innerHTML = `Generated ${randomNumbers.length} Random Number${randomNumbers.length > 1 ? 's' : ''}`
+    let buttonWrapper = document.getElementById("buttonWrapper")
+    buttonWrapper.innerHTML = ''
+    let copyButton = document.createElement('button')
+    copyButton.id = "copyButton"
+    copyButton.innerHTML = "Copy!"
+    buttonWrapper.appendChild(copyButton)
+    copyButton.addEventListener('click', e =>{
+        e.preventDefault()
+        copyNumbers()
+    })
 }
-
+function copyNumbers(){
+    let copiedNumbers = ''
+    for(let i = 0; i< randomNumbers.length; i++){
+        copiedNumbers += `${randomNumbers[i]}\n`
+    }
+    navigator.clipboard.writeText(copiedNumbers)
+}
 form.addEventListener('submit', e =>{
     e.preventDefault()
     //series of if statements for validation
@@ -37,12 +51,13 @@ form.addEventListener('submit', e =>{
         return
     }
     generateRandomNumbers(+e.target.min.value, +e.target.max.value, +e.target.digits.value, +e.target.decimals.value)
-
 })
 clearButton = document.getElementById('clear')
 clearButton.addEventListener('click', e =>{
     e.preventDefault()
-    numbersList = document.getElementById('randomNumbers')
+    let numbersList = document.getElementById('randomNumbers')
     numbersList.innerHTML = '' //clear any existing list
     confirmation.innerHTML = '' //clear confirmation message
+    let buttonWrapper = document.getElementById("buttonWrapper")
+    buttonWrapper.innerHTML = '' // remove copy button on clear
 })
