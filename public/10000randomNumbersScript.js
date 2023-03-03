@@ -48,7 +48,7 @@ form.addEventListener('submit', e =>{
         alert("Too many requested digits for given range") //this is important as there are no duplicates allowed. If range is not long enough, would case infinite loop
         return
     }
-    if (e.target.digits.value > 1000000){
+    if (e.target.digits.value > 100000){
         alert("Limit for this program is 1,000,000 numbers!")
         return
     }
